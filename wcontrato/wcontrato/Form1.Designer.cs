@@ -33,32 +33,35 @@
             this.ofdLocalizacaoContrato = new System.Windows.Forms.OpenFileDialog();
             this.tbcPrincipal = new System.Windows.Forms.TabControl();
             this.tbpCliente = new System.Windows.Forms.TabPage();
+            this.lblTipoContrato = new System.Windows.Forms.Label();
+            this.cboTipoContrato = new System.Windows.Forms.ComboBox();
+            this.cboPacote = new System.Windows.Forms.ComboBox();
+            this.lblPacote = new System.Windows.Forms.Label();
+            this.nudQtdRetaguarda = new System.Windows.Forms.NumericUpDown();
+            this.lblQtdRetaguarda = new System.Windows.Forms.Label();
+            this.nudQtdPDV = new System.Windows.Forms.NumericUpDown();
+            this.lblQtdPDV = new System.Windows.Forms.Label();
+            this.nudQtdTEF = new System.Windows.Forms.NumericUpDown();
+            this.lblQtdTEF = new System.Windows.Forms.Label();
+            this.nudValorMensal = new System.Windows.Forms.NumericUpDown();
+            this.lblValorMensal = new System.Windows.Forms.Label();
             this.txtCodCliente = new System.Windows.Forms.TextBox();
             this.lblCodCliente = new System.Windows.Forms.Label();
             this.tbpContrato = new System.Windows.Forms.TabPage();
             this.txtLocalizacaoContrato = new System.Windows.Forms.TextBox();
-            this.lblValorMensal = new System.Windows.Forms.Label();
-            this.nudValorMensal = new System.Windows.Forms.NumericUpDown();
-            this.lblQtdTEF = new System.Windows.Forms.Label();
-            this.nudQtdTEF = new System.Windows.Forms.NumericUpDown();
-            this.nudQtdPDV = new System.Windows.Forms.NumericUpDown();
-            this.lblQtdPDV = new System.Windows.Forms.Label();
-            this.nudQtdRetaguarda = new System.Windows.Forms.NumericUpDown();
-            this.lblQtdRetaguarda = new System.Windows.Forms.Label();
-            this.lblPacote = new System.Windows.Forms.Label();
-            this.cboPacote = new System.Windows.Forms.ComboBox();
             this.tbcPrincipal.SuspendLayout();
             this.tbpCliente.SuspendLayout();
-            this.tbpContrato.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudValorMensal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudQtdTEF)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudQtdPDV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQtdRetaguarda)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudQtdPDV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudQtdTEF)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudValorMensal)).BeginInit();
+            this.tbpContrato.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGeraDocContrato
             // 
             this.btnGeraDocContrato.Location = new System.Drawing.Point(649, 415);
+            this.btnGeraDocContrato.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGeraDocContrato.Name = "btnGeraDocContrato";
             this.btnGeraDocContrato.Size = new System.Drawing.Size(128, 23);
             this.btnGeraDocContrato.TabIndex = 0;
@@ -84,13 +87,16 @@
             this.tbcPrincipal.Controls.Add(this.tbpCliente);
             this.tbcPrincipal.Controls.Add(this.tbpContrato);
             this.tbcPrincipal.Location = new System.Drawing.Point(15, 12);
+            this.tbcPrincipal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbcPrincipal.Name = "tbcPrincipal";
             this.tbcPrincipal.SelectedIndex = 0;
-            this.tbcPrincipal.Size = new System.Drawing.Size(762, 397);
+            this.tbcPrincipal.Size = new System.Drawing.Size(763, 398);
             this.tbcPrincipal.TabIndex = 5;
             // 
             // tbpCliente
             // 
+            this.tbpCliente.Controls.Add(this.lblTipoContrato);
+            this.tbpCliente.Controls.Add(this.cboTipoContrato);
             this.tbpCliente.Controls.Add(this.cboPacote);
             this.tbpCliente.Controls.Add(this.lblPacote);
             this.tbpCliente.Controls.Add(this.nudQtdRetaguarda);
@@ -104,106 +110,56 @@
             this.tbpCliente.Controls.Add(this.txtCodCliente);
             this.tbpCliente.Controls.Add(this.lblCodCliente);
             this.tbpCliente.Location = new System.Drawing.Point(4, 25);
+            this.tbpCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbpCliente.Name = "tbpCliente";
-            this.tbpCliente.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpCliente.Size = new System.Drawing.Size(754, 368);
+            this.tbpCliente.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbpCliente.Size = new System.Drawing.Size(755, 369);
             this.tbpCliente.TabIndex = 0;
             this.tbpCliente.Text = "Cliente";
             this.tbpCliente.UseVisualStyleBackColor = true;
             // 
-            // txtCodCliente
+            // lblTipoContrato
             // 
-            this.txtCodCliente.Location = new System.Drawing.Point(25, 46);
-            this.txtCodCliente.Name = "txtCodCliente";
-            this.txtCodCliente.Size = new System.Drawing.Size(120, 22);
-            this.txtCodCliente.TabIndex = 1;
+            this.lblTipoContrato.AutoSize = true;
+            this.lblTipoContrato.Location = new System.Drawing.Point(245, 22);
+            this.lblTipoContrato.Name = "lblTipoContrato";
+            this.lblTipoContrato.Size = new System.Drawing.Size(108, 16);
+            this.lblTipoContrato.TabIndex = 13;
+            this.lblTipoContrato.Text = "Tipo de contrato:";
             // 
-            // lblCodCliente
+            // cboTipoContrato
             // 
-            this.lblCodCliente.AutoSize = true;
-            this.lblCodCliente.Location = new System.Drawing.Point(22, 27);
-            this.lblCodCliente.Name = "lblCodCliente";
-            this.lblCodCliente.Size = new System.Drawing.Size(159, 16);
-            this.lblCodCliente.TabIndex = 0;
-            this.lblCodCliente.Text = "Código do cliente Weber:";
+            this.cboTipoContrato.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboTipoContrato.FormattingEnabled = true;
+            this.cboTipoContrato.Location = new System.Drawing.Point(249, 44);
+            this.cboTipoContrato.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboTipoContrato.Name = "cboTipoContrato";
+            this.cboTipoContrato.Size = new System.Drawing.Size(160, 24);
+            this.cboTipoContrato.TabIndex = 12;
             // 
-            // tbpContrato
+            // cboPacote
             // 
-            this.tbpContrato.Controls.Add(this.txtLocalizacaoContrato);
-            this.tbpContrato.Controls.Add(this.lblLocalizacaoContrato);
-            this.tbpContrato.Location = new System.Drawing.Point(4, 25);
-            this.tbpContrato.Name = "tbpContrato";
-            this.tbpContrato.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpContrato.Size = new System.Drawing.Size(754, 368);
-            this.tbpContrato.TabIndex = 1;
-            this.tbpContrato.Text = "Contrato";
-            this.tbpContrato.UseVisualStyleBackColor = true;
+            this.cboPacote.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPacote.FormattingEnabled = true;
+            this.cboPacote.Location = new System.Drawing.Point(28, 251);
+            this.cboPacote.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboPacote.Name = "cboPacote";
+            this.cboPacote.Size = new System.Drawing.Size(260, 24);
+            this.cboPacote.TabIndex = 11;
             // 
-            // txtLocalizacaoContrato
+            // lblPacote
             // 
-            this.txtLocalizacaoContrato.Location = new System.Drawing.Point(23, 57);
-            this.txtLocalizacaoContrato.Name = "txtLocalizacaoContrato";
-            this.txtLocalizacaoContrato.ReadOnly = true;
-            this.txtLocalizacaoContrato.Size = new System.Drawing.Size(708, 22);
-            this.txtLocalizacaoContrato.TabIndex = 2;
-            // 
-            // lblValorMensal
-            // 
-            this.lblValorMensal.AutoSize = true;
-            this.lblValorMensal.Location = new System.Drawing.Point(22, 93);
-            this.lblValorMensal.Name = "lblValorMensal";
-            this.lblValorMensal.Size = new System.Drawing.Size(89, 16);
-            this.lblValorMensal.TabIndex = 2;
-            this.lblValorMensal.Text = "Valor mensal:";
-            // 
-            // nudValorMensal
-            // 
-            this.nudValorMensal.DecimalPlaces = 2;
-            this.nudValorMensal.Location = new System.Drawing.Point(25, 113);
-            this.nudValorMensal.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.nudValorMensal.Name = "nudValorMensal";
-            this.nudValorMensal.Size = new System.Drawing.Size(120, 22);
-            this.nudValorMensal.TabIndex = 3;
-            // 
-            // lblQtdTEF
-            // 
-            this.lblQtdTEF.AutoSize = true;
-            this.lblQtdTEF.Location = new System.Drawing.Point(22, 163);
-            this.lblQtdTEF.Name = "lblQtdTEF";
-            this.lblQtdTEF.Size = new System.Drawing.Size(109, 16);
-            this.lblQtdTEF.TabIndex = 4;
-            this.lblQtdTEF.Text = "Quantidade TEF:";
-            // 
-            // nudQtdTEF
-            // 
-            this.nudQtdTEF.Location = new System.Drawing.Point(25, 182);
-            this.nudQtdTEF.Name = "nudQtdTEF";
-            this.nudQtdTEF.Size = new System.Drawing.Size(120, 22);
-            this.nudQtdTEF.TabIndex = 5;
-            // 
-            // nudQtdPDV
-            // 
-            this.nudQtdPDV.Location = new System.Drawing.Point(168, 182);
-            this.nudQtdPDV.Name = "nudQtdPDV";
-            this.nudQtdPDV.Size = new System.Drawing.Size(120, 22);
-            this.nudQtdPDV.TabIndex = 7;
-            // 
-            // lblQtdPDV
-            // 
-            this.lblQtdPDV.AutoSize = true;
-            this.lblQtdPDV.Location = new System.Drawing.Point(165, 163);
-            this.lblQtdPDV.Name = "lblQtdPDV";
-            this.lblQtdPDV.Size = new System.Drawing.Size(111, 16);
-            this.lblQtdPDV.TabIndex = 6;
-            this.lblQtdPDV.Text = "Quantidade PDV:";
+            this.lblPacote.AutoSize = true;
+            this.lblPacote.Location = new System.Drawing.Point(25, 231);
+            this.lblPacote.Name = "lblPacote";
+            this.lblPacote.Size = new System.Drawing.Size(53, 16);
+            this.lblPacote.TabIndex = 10;
+            this.lblPacote.Text = "Pacote:";
             // 
             // nudQtdRetaguarda
             // 
             this.nudQtdRetaguarda.Location = new System.Drawing.Point(319, 183);
+            this.nudQtdRetaguarda.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nudQtdRetaguarda.Name = "nudQtdRetaguarda";
             this.nudQtdRetaguarda.Size = new System.Drawing.Size(120, 22);
             this.nudQtdRetaguarda.TabIndex = 9;
@@ -217,23 +173,101 @@
             this.lblQtdRetaguarda.TabIndex = 8;
             this.lblQtdRetaguarda.Text = "Quantidade Retaguarda:";
             // 
-            // lblPacote
+            // nudQtdPDV
             // 
-            this.lblPacote.AutoSize = true;
-            this.lblPacote.Location = new System.Drawing.Point(25, 231);
-            this.lblPacote.Name = "lblPacote";
-            this.lblPacote.Size = new System.Drawing.Size(53, 16);
-            this.lblPacote.TabIndex = 10;
-            this.lblPacote.Text = "Pacote:";
+            this.nudQtdPDV.Location = new System.Drawing.Point(168, 182);
+            this.nudQtdPDV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nudQtdPDV.Name = "nudQtdPDV";
+            this.nudQtdPDV.Size = new System.Drawing.Size(120, 22);
+            this.nudQtdPDV.TabIndex = 7;
             // 
-            // cboPacote
+            // lblQtdPDV
             // 
-            this.cboPacote.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPacote.FormattingEnabled = true;
-            this.cboPacote.Location = new System.Drawing.Point(28, 251);
-            this.cboPacote.Name = "cboPacote";
-            this.cboPacote.Size = new System.Drawing.Size(260, 24);
-            this.cboPacote.TabIndex = 11;
+            this.lblQtdPDV.AutoSize = true;
+            this.lblQtdPDV.Location = new System.Drawing.Point(165, 162);
+            this.lblQtdPDV.Name = "lblQtdPDV";
+            this.lblQtdPDV.Size = new System.Drawing.Size(111, 16);
+            this.lblQtdPDV.TabIndex = 6;
+            this.lblQtdPDV.Text = "Quantidade PDV:";
+            // 
+            // nudQtdTEF
+            // 
+            this.nudQtdTEF.Location = new System.Drawing.Point(25, 182);
+            this.nudQtdTEF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nudQtdTEF.Name = "nudQtdTEF";
+            this.nudQtdTEF.Size = new System.Drawing.Size(120, 22);
+            this.nudQtdTEF.TabIndex = 5;
+            // 
+            // lblQtdTEF
+            // 
+            this.lblQtdTEF.AutoSize = true;
+            this.lblQtdTEF.Location = new System.Drawing.Point(21, 162);
+            this.lblQtdTEF.Name = "lblQtdTEF";
+            this.lblQtdTEF.Size = new System.Drawing.Size(109, 16);
+            this.lblQtdTEF.TabIndex = 4;
+            this.lblQtdTEF.Text = "Quantidade TEF:";
+            // 
+            // nudValorMensal
+            // 
+            this.nudValorMensal.DecimalPlaces = 2;
+            this.nudValorMensal.Location = new System.Drawing.Point(25, 113);
+            this.nudValorMensal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nudValorMensal.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.nudValorMensal.Name = "nudValorMensal";
+            this.nudValorMensal.Size = new System.Drawing.Size(120, 22);
+            this.nudValorMensal.TabIndex = 3;
+            // 
+            // lblValorMensal
+            // 
+            this.lblValorMensal.AutoSize = true;
+            this.lblValorMensal.Location = new System.Drawing.Point(21, 94);
+            this.lblValorMensal.Name = "lblValorMensal";
+            this.lblValorMensal.Size = new System.Drawing.Size(89, 16);
+            this.lblValorMensal.TabIndex = 2;
+            this.lblValorMensal.Text = "Valor mensal:";
+            // 
+            // txtCodCliente
+            // 
+            this.txtCodCliente.Location = new System.Drawing.Point(25, 46);
+            this.txtCodCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCodCliente.Name = "txtCodCliente";
+            this.txtCodCliente.Size = new System.Drawing.Size(120, 22);
+            this.txtCodCliente.TabIndex = 1;
+            // 
+            // lblCodCliente
+            // 
+            this.lblCodCliente.AutoSize = true;
+            this.lblCodCliente.Location = new System.Drawing.Point(21, 27);
+            this.lblCodCliente.Name = "lblCodCliente";
+            this.lblCodCliente.Size = new System.Drawing.Size(159, 16);
+            this.lblCodCliente.TabIndex = 0;
+            this.lblCodCliente.Text = "Código do cliente Weber:";
+            // 
+            // tbpContrato
+            // 
+            this.tbpContrato.Controls.Add(this.txtLocalizacaoContrato);
+            this.tbpContrato.Controls.Add(this.lblLocalizacaoContrato);
+            this.tbpContrato.Location = new System.Drawing.Point(4, 25);
+            this.tbpContrato.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbpContrato.Name = "tbpContrato";
+            this.tbpContrato.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbpContrato.Size = new System.Drawing.Size(755, 369);
+            this.tbpContrato.TabIndex = 1;
+            this.tbpContrato.Text = "Contrato";
+            this.tbpContrato.UseVisualStyleBackColor = true;
+            // 
+            // txtLocalizacaoContrato
+            // 
+            this.txtLocalizacaoContrato.Location = new System.Drawing.Point(23, 57);
+            this.txtLocalizacaoContrato.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtLocalizacaoContrato.Name = "txtLocalizacaoContrato";
+            this.txtLocalizacaoContrato.ReadOnly = true;
+            this.txtLocalizacaoContrato.Size = new System.Drawing.Size(708, 22);
+            this.txtLocalizacaoContrato.TabIndex = 2;
             // 
             // Form1
             // 
@@ -242,6 +276,7 @@
             this.ClientSize = new System.Drawing.Size(789, 450);
             this.Controls.Add(this.tbcPrincipal);
             this.Controls.Add(this.btnGeraDocContrato);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
@@ -251,12 +286,12 @@
             this.tbcPrincipal.ResumeLayout(false);
             this.tbpCliente.ResumeLayout(false);
             this.tbpCliente.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudQtdRetaguarda)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudQtdPDV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudQtdTEF)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudValorMensal)).EndInit();
             this.tbpContrato.ResumeLayout(false);
             this.tbpContrato.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudValorMensal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudQtdTEF)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudQtdPDV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudQtdRetaguarda)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -282,6 +317,8 @@
         private System.Windows.Forms.Label lblQtdPDV;
         private System.Windows.Forms.ComboBox cboPacote;
         private System.Windows.Forms.Label lblPacote;
+        private System.Windows.Forms.Label lblTipoContrato;
+        private System.Windows.Forms.ComboBox cboTipoContrato;
     }
 }
 

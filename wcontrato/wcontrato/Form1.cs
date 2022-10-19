@@ -17,8 +17,8 @@ namespace wcontrato
     {
 
         public string localizacaoContrato = null;
-        public string trechoSocioPadrao = @"Sr. #NOME_SOCIO#, brasileiro,   solteiro,   empresário, " + 
-            "titular   do   documento   de   identidade   RG   nº #RG_SOCIO#, inscrito no CPF sob o nº #CPF_SOCIO#";
+        public string trechoSocioPadrao = @"Sr.(a) #NOME_SOCIO#, brasileiro(a),   solteiro(a),   empresário(a), " + 
+            "titular   do   documento   de   identidade   RG   nº #RG_SOCIO#, inscrito(a) no CPF sob o nº #CPF_SOCIO#";
 
         public Form1()
         {
@@ -213,6 +213,22 @@ namespace wcontrato
             return str.ToUpper();
         }
 
+        private string CapitalizarNome(string nome)
+        {
+            string[] excecoes = new string[] { "e", "de", "da", "das", "do", "dos" };
+            var palavras = new Queue<string>();
+            foreach (var palavra in nome.Split(' '))
+            {
+                if (!string.IsNullOrEmpty(palavra))
+                {
+                    var emMinusculo = palavra.ToLower();
+                    var letras = emMinusculo.ToCharArray();
+                    if (!excecoes.Contains(emMinusculo)) letras[0] = char.ToUpper(letras[0]);
+                    palavras.Enqueue(new string(letras));
+                }
+            }
+            return string.Join(" ", palavras);
+        }
         private void btnGeraDocContrato_Click(object sender, EventArgs e)
         {
 
@@ -236,6 +252,7 @@ namespace wcontrato
                         List<string> listaTrechosSocios = new List<string>();
                         string trechosSocios = null;
                         decimal valorMensal = this.nudValorMensal.Value;
+                       
 
                         //Obtendo dados do cliente
                         Model.Cliente cliente = Model.BD.ObtemDadosCliente(codCliente);
@@ -243,15 +260,16 @@ namespace wcontrato
                         if(cliente is null) { validacoesErros += "Não foi possível obter os dados do cliente.\n"; }
                         if(valorMensal < 1) { validacoesErros += "Você deve informar o valor mensal.\n"; }
                         if(this.cboPacote.SelectedIndex < 1) { validacoesErros += "Você deve selecionar o pacote.\n"; }
+                        if(this.cboTipoContrato.SelectedIndex < 1) { validacoesErros += "Você deve selecionar o tipo de contrato.\n"; }
 
-                        
+
                         if (string.IsNullOrEmpty(validacoesErros))
                         {
 
                             if (cliente.socioAdm1.Equals("S"))
                             {
                                 string socio1 = trechoSocioPadrao;
-                                socio1 = socio1.Replace("#NOME_SOCIO#", cliente.socioNome1);
+                                socio1 = socio1.Replace("#NOME_SOCIO#", cliente.socioNome1.ToUpper());
                                 socio1 = socio1.Replace("#CPF_SOCIO#", FormatCPF(cliente.socioCpf1));
                                 socio1 = socio1.Replace("#RG_SOCIO#", Utilitarios.Util.apenasNumeros(cliente.socioRg1));
                                 listaTrechosSocios.Add(socio1);
@@ -262,7 +280,7 @@ namespace wcontrato
                             if (cliente.socioAdm2.Equals("S"))
                             {
                                 string socio2 = trechoSocioPadrao;
-                                socio2 = socio2.Replace("#NOME_SOCIO#", cliente.socioNome2);
+                                socio2 = socio2.Replace("#NOME_SOCIO#", cliente.socioNome2.ToUpper());
                                 socio2 = socio2.Replace("#CPF_SOCIO#", FormatCPF(cliente.socioCpf2));
                                 socio2 = socio2.Replace("#RG_SOCIO#", Utilitarios.Util.apenasNumeros(cliente.socioRg2));
                                 listaTrechosSocios.Add(socio2);
@@ -271,7 +289,7 @@ namespace wcontrato
                             if (cliente.socioAdm3.Equals("S"))
                             {
                                 string socio3 = trechoSocioPadrao;
-                                socio3 = socio3.Replace("#NOME_SOCIO#", cliente.socioNome3);
+                                socio3 = socio3.Replace("#NOME_SOCIO#", CapitalizarNome(cliente.socioNome3));
                                 socio3 = socio3.Replace("#CPF_SOCIO#", FormatCPF(cliente.socioCpf3));
                                 socio3 = socio3.Replace("#RG_SOCIO#", Utilitarios.Util.apenasNumeros(cliente.socioRg3));
                                 listaTrechosSocios.Add(socio3);
@@ -282,14 +300,14 @@ namespace wcontrato
 
 
 
-                            IDocument replaceDocument = new Document(this.localizacaoContrato);
-                            replaceDocument.Replace("#NOME_RAZAO#", cliente.nomeRazao, false, true);
+                            IDocument replaceDocument = new Document(this.localizacaoContrato + this.cboTipoContrato.SelectedValue);
+                            replaceDocument.Replace("#NOME_RAZAO#", cliente.nomeRazao.Trim(), false, true);
                             replaceDocument.Replace("#CNPJ_CPF#", cliente.cnpjCpf, false, true);
-                            replaceDocument.Replace("#ENDER_RUA#", cliente.enderRua, false, true);
+                            replaceDocument.Replace("#ENDER_RUA#", CapitalizarNome(cliente.enderRua.Trim()), false, true);
                             replaceDocument.Replace("#ENDER_NUM#", cliente.enderNum.ToString(), false, true);
-                            replaceDocument.Replace("#ENDER_BAIRRO#", cliente.enderBairro, false, true);
-                            replaceDocument.Replace("#ENDER_CIDADE#", cliente.enderCidade, false, true);
-                            replaceDocument.Replace("#ENDER_UF#", cliente.enderUF, false, true);
+                            replaceDocument.Replace("#ENDER_BAIRRO#", CapitalizarNome(cliente.enderBairro.Trim()), false, true);
+                            replaceDocument.Replace("#ENDER_CIDADE#", CapitalizarNome(cliente.enderCidade.Trim()), false, true);
+                            replaceDocument.Replace("#ENDER_UF#", cliente.enderUF.Trim().ToUpper(), false, true);
                             replaceDocument.Replace("#SOCIOS_TRECHO_01#", trechosSocios, false, true);
                             replaceDocument.Replace("#DIA_VCTO_FATURA#", OrdinalExtensoVCTO(cliente.dataVctoFatura), false, true);
                             replaceDocument.Replace("#DATA_EXTENSA_COM_CIDADE#", obtemDataExtensaComCidade(), false, true);
@@ -297,7 +315,7 @@ namespace wcontrato
                             replaceDocument.Replace("#QTD_PDV#", Math.Abs(this.nudQtdPDV.Value).ToString().PadLeft(2, '0'), false, true);
                             replaceDocument.Replace("#QTD_TEF#", Math.Abs(this.nudQtdTEF.Value).ToString().PadLeft(2, '0'), false, true);
                             replaceDocument.Replace("#QTD_RETAGUARDA#", Math.Abs(this.nudQtdRetaguarda.Value).ToString().PadLeft(2, '0'), false, true);
-                            replaceDocument.Replace("#PACOTE_NOME#", this.cboPacote.SelectedValue.ToString(), false, true);
+                            replaceDocument.Replace("#PACOTE_NOME#", this.cboPacote.SelectedValue.ToString().ToUpper(), false, true);
 
 
 
@@ -345,21 +363,44 @@ namespace wcontrato
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.localizacaoContrato = AppDomain.CurrentDomain.BaseDirectory + "contratoWeber.docx";
-            this.lblLocalizacaoContrato.Text = "O contrato deve estar localizado no caminho:";
-            this.txtLocalizacaoContrato.Text = this.localizacaoContrato;
+            
 
             List<KeyValue>  listaPacote = new List<KeyValue>();
 
-            listaPacote.Add(new KeyValue() { Key = "", Value = "Selecione..." });
-            listaPacote.Add(new KeyValue() { Key = "Silver", Value = "Silver" });
-            listaPacote.Add(new KeyValue() { Key = "Gold", Value = "Gold" });
-            listaPacote.Add(new KeyValue() { Key = "Platinum", Value = "Platinum" });
+            listaPacote.Add(new KeyValue() { Key = "Selecione", Value = "Selecione..." });
+            listaPacote.Add(new KeyValue() { Key = " Silver", Value = "Silver" });
+            listaPacote.Add(new KeyValue() { Key = " Gold", Value = "Gold" });
+            listaPacote.Add(new KeyValue() { Key = " Platinum", Value = "Platinum" });
+            listaPacote.Add(new KeyValue() { Key = "", Value = "Nenhum(Em branco)" });
 
             this.cboPacote.DataSource = listaPacote;
             this.cboPacote.DisplayMember = "Value";
             this.cboPacote.ValueMember = "Key";
             this.cboPacote.SelectedIndex = 0;
+
+            List<KeyValue> listaTipoContrato = new List<KeyValue>();
+
+            listaTipoContrato.Add(new KeyValue() { Key = "", Value = "Selecione..." });
+            listaTipoContrato.Add(new KeyValue() { Key = "contratoWeber.docx", Value = "Novo" });
+            listaTipoContrato.Add(new KeyValue() { Key = "adendoContratual.docx", Value = "Adendo" });
+
+            this.cboTipoContrato.DataSource = listaTipoContrato;
+            this.cboTipoContrato.DisplayMember = "Value";
+            this.cboTipoContrato.ValueMember = "Key";
+            this.cboTipoContrato.SelectedIndex = 0;
+
+
+
+            this.localizacaoContrato = AppDomain.CurrentDomain.BaseDirectory;
+            this.lblLocalizacaoContrato.Text = "Os contratos devem estar localizados na pasta do executável com os nomes:";
+            string nomesContratos = "";
+            foreach(var keyContrato in listaTipoContrato)
+            {
+                if(keyContrato.Key != "")
+                    nomesContratos += keyContrato.Key + ", ";
+            }
+            this.txtLocalizacaoContrato.Text = nomesContratos;
+
         }
     }
 }
