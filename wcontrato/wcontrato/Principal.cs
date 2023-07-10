@@ -85,7 +85,7 @@ namespace wcontrato
             trataJSON(Globals.IDENTIF);
 
             //Validando se na pasta da aplicação encontram-se todas as dlls necessárias
-            string errorsDlls = null;
+            /*string errorsDlls = null;
             try
             {
                 foreach (var dll in listDlls)
@@ -107,7 +107,7 @@ namespace wcontrato
             {
                 MessageBox.Show(ex.ToString());
                 this.Close();
-            }
+            }*/
 
             Form1 newForm = new Form1();
             newForm.FormClosing += (obj, args) => { this.Dispose(); };

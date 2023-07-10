@@ -42,7 +42,6 @@ namespace wcontrato.Model
             return _conectionString;
         }
 
-
         public static Cliente ObtemDadosCliente(int idCliente)
         {
 
@@ -57,7 +56,8 @@ namespace wcontrato.Model
                     conexaoFireBird.Open();
                     string mSQL = @"select wc.id_cliente, wc.cnpj_cpf, wc.nome_razao, wc.endereco, coalesce(wc.ender_num,0) as ender_num,
                     wc.bairro, wc.cidade, wc.uf, coalesce(wc.contrato_dia_vcto,0) as contrato_dia_vcto, wc.socio_nome1, wc.socio_cpf1, wc.socio_rg1, wc.socio_adm1,
-                    wc.socio_nome2, wc.socio_cpf2, wc.socio_rg2, wc.socio_adm2, wc.socio_nome3, wc.socio_cpf3, wc.socio_rg3, wc.socio_adm3
+                    wc.socio_nome2, wc.socio_cpf2, wc.socio_rg2, wc.socio_adm2, wc.socio_nome3, wc.socio_cpf3, wc.socio_rg3, wc.socio_adm3,
+                    coalesce(wc.contrato_qtd_tef,0) as contrato_qtd_tef,  coalesce(wc.contrato_qtd_pdv,0) as contrato_qtd_pdv, coalesce(wc.contrato_qtd_term,0) as contrato_qtd_term
                     from web_clie wc where wc.id_cliente = " + idCliente;
 
                     FbCommand cmd = new FbCommand(mSQL, conexaoFireBird);
@@ -66,33 +66,40 @@ namespace wcontrato.Model
                     while (dr.Read())
                     {
                         cliente =
-                            new Cliente() {
-                                idCliente = int.Parse(dr["ID_CLIENTE"].ToString()),
-                                cnpjCpf = dr["CNPJ_CPF"].ToString(),
-                                nomeRazao = dr["NOME_RAZAO"].ToString(),
-                                enderRua = dr["ENDERECO"].ToString(),
-                                enderCidade = dr["CIDADE"].ToString(),
-                                enderUF = dr["UF"].ToString(),
-                                enderBairro = dr["BAIRRO"].ToString(),
-                                enderNum = int.Parse(dr["ENDER_NUM"].ToString()),
-                                dataVctoFatura = int.Parse(dr["CONTRATO_DIA_VCTO"].ToString()),
-                                socioAdm1 = dr["SOCIO_ADM1"].ToString(),
-                                socioCpf1 = dr["SOCIO_CPF1"].ToString(),
-                                socioRg1 = dr["SOCIO_RG1"].ToString(),
-                                socioNome1 = dr["SOCIO_NOME1"].ToString(),
-                                socioAdm2 = dr["SOCIO_ADM2"].ToString(),
-                                socioCpf2 = dr["SOCIO_CPF2"].ToString(),
-                                socioRg2 = dr["SOCIO_RG2"].ToString(),
-                                socioNome2 = dr["SOCIO_NOME2"].ToString(),
-                                socioAdm3 = dr["SOCIO_ADM3"].ToString(),
-                                socioCpf3 = dr["SOCIO_CPF3"].ToString(),
-                                socioRg3 = dr["SOCIO_RG3"].ToString(),
-                                socioNome3 = dr["SOCIO_NOME3"].ToString(),
+                            new Cliente()
+                            {
+                                ID_CLIENTE = int.Parse(dr["ID_CLIENTE"].ToString()),
+                                CNPJ_CPF = dr["CNPJ_CPF"].ToString(),
+                                NOME_RAZAO = dr["NOME_RAZAO"].ToString(),
+                                ENDERECO = dr["ENDERECO"].ToString(),
+                                CIDADE = dr["CIDADE"].ToString(),
+                                UF = dr["UF"].ToString(),
+                                BAIRRO = dr["BAIRRO"].ToString(),
+                                ENDER_NUM = dr["ENDER_NUM"].ToString(),
+                                CONTRATO_DIA_VCTO = dr["CONTRATO_DIA_VCTO"].ToString(),
+                                SOCIO_ADM1 = dr["SOCIO_ADM1"].ToString(),
+                                SOCIO_CPF1 = dr["SOCIO_CPF1"].ToString(),
+                                SOCIO_RG1 = dr["SOCIO_RG1"].ToString(),
+                                SOCIO_NOME1 = dr["SOCIO_NOME1"].ToString(),
+                                SOCIO_ADM2 = dr["SOCIO_ADM2"].ToString(),
+                                SOCIO_CPF2 = dr["SOCIO_CPF2"].ToString(),
+                                SOCIO_RG2 = dr["SOCIO_RG2"].ToString(),
+                                SOCIO_NOME2 = dr["SOCIO_NOME2"].ToString(),
+                                SOCIO_ADM3 = dr["SOCIO_ADM3"].ToString(),
+                                SOCIO_CPF3 = dr["SOCIO_CPF3"].ToString(),
+                                SOCIO_RG3 = dr["SOCIO_RG3"].ToString(),
+                                SOCIO_NOME3 = dr["SOCIO_NOME3"].ToString(),
+                                CONTRATO_QTD_TEF = int.Parse(dr["CONTRATO_QTD_TEF"].ToString()),
+                                CONTRATO_QTD_PDV = int.Parse(dr["CONTRATO_QTD_PDV"].ToString()),
+                                CONTRATO_QTD_TERM = int.Parse(dr["CONTRATO_QTD_TERM"].ToString()),
                             };
 
                     }
 
+                    
                     return cliente;
+
+
                 }
                 catch (FbException fbex)
                 {

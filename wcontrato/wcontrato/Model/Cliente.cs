@@ -9,31 +9,35 @@ namespace wcontrato.Model
     public class Cliente
     {
 
+        
+        public int ID_CLIENTE { get; set; } = 0;
+        public string NOME_RAZAO { get; set; } = string.Empty;
+        public string CNPJ_CPF { get; set; } = string.Empty;
+        public string ENDERECO { get; set; } = string.Empty;
+        public string ENDER_NUM { get; set; } = string.Empty;
+        public string BAIRRO { get; set; } = string.Empty;
+        public string CIDADE { get; set; } = string.Empty;
+        public string UF { get; set; } = string.Empty;
+        public string CONTRATO_DIA_VCTO { get; set; } = string.Empty;
 
-        public int idCliente { get; set; }
-        public string nomeRazao { get; set; }
-        public string cnpjCpf { get; set; }
-        public string enderRua { get; set; }
-        public int enderNum { get; set; }
-        public string enderBairro { get; set; }
-        public string enderCidade { get; set; }
-        public string enderUF { get; set; }
-        public int dataVctoFatura { get; set; }
+        public string SOCIO_CPF1 { get; set; } = string.Empty;
+        public string SOCIO_NOME1 { get; set; } = string.Empty;
+        public string SOCIO_RG1 { get; set; } = string.Empty;
+        public string SOCIO_ADM1 { get; set; } = string.Empty;
 
-        public string socioCpf1 { get; set; }
-        public string socioNome1 { get; set; }
-        public string socioRg1 { get; set; }
-        public string socioAdm1 { get; set; }
+        public string SOCIO_CPF2 { get; set; } = string.Empty;
+        public string SOCIO_NOME2 { get; set; } = string.Empty;
+        public string SOCIO_RG2 { get; set; } = string.Empty;
+        public string SOCIO_ADM2 { get; set; } = string.Empty;
 
-        public string socioCpf2 { get; set; }
-        public string socioNome2 { get; set; }
-        public string socioRg2 { get; set; }
-        public string socioAdm2 { get; set; }
+        public string SOCIO_CPF3 { get; set; } = string.Empty;
+        public string SOCIO_NOME3 { get; set; } = string.Empty;
+        public string SOCIO_RG3 { get; set; } = string.Empty;
+        public string SOCIO_ADM3 { get; set; } = string.Empty;
 
-        public string socioCpf3 { get; set; }
-        public string socioNome3 { get; set; }
-        public string socioRg3 { get; set; }
-        public string socioAdm3 { get; set; }
+        public int CONTRATO_QTD_TEF { get; set; } = 0;
+        public int CONTRATO_QTD_PDV { get; set; } = 0;
+        public int CONTRATO_QTD_TERM { get; set; } = 0;
 
     }
 
