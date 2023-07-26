@@ -60,9 +60,9 @@ namespace wcontrato
             this.txtCNPJ.Text = "07691741000105";
             this.txtContatoAC.Text = "Francisco";
             this.txtRazaoSocial.Text = "Supermercado do Francisco";
-            this.nudValorMensal.Value = 1;
-            this.nudValorImplantacao.Value = 5000;
-            this.nudQtdParcelaImplantacao.Value = 2;
+            //this.nudValorMensal.Value = 1;
+           // this.nudValorImplantacao.Value = 5000;
+           // this.nudQtdParcelaImplantacao.Value = 2;
             this.nudDiaVctoFatura.Value = 5;
           
         }
@@ -84,7 +84,7 @@ namespace wcontrato
 
                 
                     //Caso seja proposta comercial não precisa ter um código de cliente
-                    if (codCliente > 0 || this.cboTipoContrato.SelectedIndex == 3)
+                    if (codCliente > 0 || this.cboTipoContrato.SelectedIndex == 4)
                     {
 
  
@@ -122,7 +122,7 @@ namespace wcontrato
                         if((qtdParcelasImplantacao > 0 && valorImplantacao <= 0) || (qtdParcelasImplantacao <= 0 && valorImplantacao > 0)) { validacoesErros += "Você deve informar Quantidade e Valor de implantação, ou deixar ambos campos em branco.\n"; }
                        
                         //Validações ref. ao tipo Proposta comercial
-                        if (this.cboTipoContrato.SelectedIndex == 3)
+                        if (this.cboTipoContrato.SelectedIndex == 4)
                         {
                             nomeConsultor = Model.Util.CapitalizarNome(this.cboConsultor.SelectedValue.ToString().Trim());
                             nomeClienteAC = Model.Util.CapitalizarNome(this.txtContatoAC.Text.Trim());
@@ -271,10 +271,12 @@ namespace wcontrato
 
             //Não alterar sequência dos tipos devido as validações
             listaTipoContrato.Add(new Model.KeyValue() { Key = "", Value = "Selecione..." }); //0
-            listaTipoContrato.Add(new Model.KeyValue() { Key = "contratoWeber.docx", Value = "Adm - Cliente Novo" }); //1
+            listaTipoContrato.Add(new Model.KeyValue() { Key = "contratoWeber.docx", Value = "Adm - Cliente Novo" });
+            listaTipoContrato.Add(new Model.KeyValue() { Key = "contratoWeber24meses.docx", Value = "Adm - Cliente Novo Fidelidade 24 meses" });//1
             listaTipoContrato.Add(new Model.KeyValue() { Key = "adendoContratual.docx", Value = "Adm - Adendo" }); //2
             listaTipoContrato.Add(new Model.KeyValue() { Key = "propostaComercial.docx", Value = "Comercial - Proposta" }); //3
             //listaTipoContrato.Add(new Model.KeyValue() { Key = "adendoComercial.docx", Value = "Comercial - Adendo" }); //4
+
 
             this.cboTipoContrato.DataSource = listaTipoContrato;
             this.cboTipoContrato.DisplayMember = "Value";
@@ -297,7 +299,7 @@ namespace wcontrato
 
             desativaCamposDadosCliente();
 
-            populaDadosTeste();
+          //  populaDadosTeste();
 
 
         }
@@ -368,6 +370,10 @@ namespace wcontrato
                     break;
 
                 case 3:
+                    this.txtCodCliente.Enabled = true;
+                    break;
+
+                case 4:
                     this.txtCodCliente.Enabled = true;
                     this.txtRazaoSocial.Enabled = true;
                     this.txtContatoAC.Enabled = true;
