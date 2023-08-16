@@ -91,7 +91,7 @@ namespace wcontrato
 
                         string uuid = Utilitarios.Util.gerarUUIDVersion4(false);
                         string validacoesErros = null;
-                        string pathSalvar = AppDomain.CurrentDomain.BaseDirectory +  codCliente + "_" + DateTime.Now.ToString("yyyyyMMddhhmmss") + "\\";
+                        string pathSalvar = AppDomain.CurrentDomain.BaseDirectory + "contratos\\" +  codCliente + "_" + DateTime.Now.ToString("yyyyyMMddhhmmss") + "\\";
                         List<string> listaTrechosSocios = new List<string>();
                         string trechosSocios = null;
                         decimal valorMensalidade = this.nudValorMensal.Value;
