@@ -77,7 +77,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\..\..\..\..\..\desktop_repositorios\winforms_util\Utilitarios.cs">
+    <Compile Include="C:\desktop_repositorios\winforms_util\Utilitarios.cs">
       <Link>Model\Utilitarios.cs</Link>
     </Compile>
     <Compile Include="Controller\AplicacaoController.cs" />

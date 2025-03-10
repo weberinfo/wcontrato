@@ -109,7 +109,21 @@ namespace wcontrato
 
                         //Atualizando os dados a partir dos campos
                         cliente.NOME_RAZAO = this.txtRazaoSocial.Text.Trim();
-                        cliente.CNPJ_CPF = !String.IsNullOrEmpty(this.txtCNPJ.Text) ? Convert.ToUInt64(Utilitarios.Util.apenasNumeros(this.txtCNPJ.Text.Trim())).ToString(@"00\.000\.000\/0000\-00") : null;
+                    if (!String.IsNullOrEmpty(this.txtCNPJ.Text))
+                    {
+                        if (Utilitarios.Util.validaCNPJ(Utilitarios.Util.apenasNumeros(this.txtCNPJ.Text)))
+                        {
+                            cliente.CNPJ_CPF = Convert.ToUInt64(Utilitarios.Util.apenasNumeros(this.txtCNPJ.Text.Trim())).ToString(@"00\.000\.000\/0000\-00");
+
+                        } else if (Utilitarios.Util.validaCPF(Utilitarios.Util.apenasNumeros(this.txtCNPJ.Text)))
+                        {
+                            cliente.CNPJ_CPF = Convert.ToUInt64(Utilitarios.Util.apenasNumeros(this.txtCNPJ.Text.Trim())).ToString(@"000\.000\.000\-00");
+                        } else
+                        {
+                            cliente.CNPJ_CPF = null;
+                        }
+
+                    }
                         cliente.CONTRATO_DIA_VCTO = this.nudDiaVctoFatura.Value.ToString();
 
                         //Validações gerais
@@ -117,7 +131,7 @@ namespace wcontrato
                         if(valorMensalidade < 1) { validacoesErros += "Você deve informar o valor mensal.\n"; }
                         if(this.cboPacote.SelectedIndex < 1) { validacoesErros += "Você deve selecionar o pacote.\n"; }
                         if(this.cboTipoContrato.SelectedIndex < 1) { validacoesErros += "Você deve selecionar o tipo de contrato.\n"; }
-                        if(String.IsNullOrEmpty(cliente.CNPJ_CPF) || !Utilitarios.Util.validaCNPJ(cliente.CNPJ_CPF)) { validacoesErros += "Você deve informar o CNPJ.\n"; }
+                        if (String.IsNullOrEmpty(cliente.CNPJ_CPF) || (!Utilitarios.Util.validaCNPJ(cliente.CNPJ_CPF) && !Utilitarios.Util.validaCPF(cliente.CNPJ_CPF) ) ) { validacoesErros += "Você deve informar o CNPJ/CPF.\n"; }
                         if(cliente.NOME_RAZAO == null || cliente.NOME_RAZAO.Equals("")) { validacoesErros += "Você deve informar a razão social.\n"; }
                         if((qtdParcelasImplantacao > 0 && valorImplantacao <= 0) || (qtdParcelasImplantacao <= 0 && valorImplantacao > 0)) { validacoesErros += "Você deve informar Quantidade e Valor de implantação, ou deixar ambos campos em branco.\n"; }
                        
